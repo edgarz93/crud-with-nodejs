@@ -1,0 +1,27 @@
+@layout('layouts/app')
+
+@section('title')
+    edit a sneaker page
+@endsection
+
+@section('content')
+    <h1>edit a sneaker page</h1>
+    <form action="/sneakers/{{sneaker.id}}?_method=PUT" method="POST">
+        {{csrfField()}}
+
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" value="{{sneaker.title}}">
+        </div>
+        <div>
+            <label>Image</label>
+            <input type="text" name="image" value="{{sneaker.image}}">
+        </div>
+        <div>
+            <textarea name="description" cols="30" rows="10">{{sneaker.description}}</textarea>
+        </div>
+        <div>
+            <input type="submit" value="save">
+        </div>
+    </form>
+@endsection

@@ -1,0 +1,43 @@
+@layout('layouts/app')
+
+@section('title')
+    Show all sneakers page
+@endsection
+
+@section('content')
+    <h1>show all sneakers</h1>
+    <div class="links">
+        <nav>
+            <a href="sneakers/create" class="add">Add a sneaker</a>
+        </nav>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+    </table>
+    <table>
+        <tbody>
+            @each(sneaker in allSneakers)
+                <tr>
+                    <td>{{sneaker.id}}</td>
+                    <td>{{sneaker.title}}</td>
+                    <td>
+                        <a href="/sneakers/{{sneaker.id}}/edit">Edit</a>
+                        <form action="/sneakers/{{sneaker.id}}?_method=DELETE" method="POST">
+                            {{csrfField()}}
+                            <input type="submit" value="delete">
+                        </form>
+                        
+                        <a href="/sneakers/{{sneaker.id}}">Show</a>
+                    </td>
+                </tr>
+            @endeach
+        </tbody>
+    </table>
+@endsection
